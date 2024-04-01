@@ -4,24 +4,35 @@ import { fileTypeFromBuffer } from 'file-type';
 import { memMonitor } from './memory-utils.js';
 import { dirname, files } from './constants.js';
 import { downloadPath, rethrow } from './utils.js';
-if (!fs.existsSync(dirname)) fs.mkdirSync(dirname);
 
 const logMemDiff = memMonitor();
 
-downloadFile(files['10mb'].name, files['10mb'].url);
+main();
 
-// const memTimer = setInterval(logMemDiff, 1000);
-// downloadFile(files['500mb'].name, files['500mb'].url)
-//   .then(() => clearInterval(memTimer))
-//   .catch(console.error);
+// todo:
+// rm file download
+// test with copying
+async function main() {
+  if (!fs.existsSync(dirname)) fs.mkdirSync(dirname);
+  // await downloadFile(files['10mb'].name, files['10mb'].url);
+  
+  const memTimer = setInterval(logMemDiff, 1000);
+  
+  await downloadFile(files['50mb'].name, files['50mb'].url);
 
-async function copySlow(from, toFilename) {
+  clearInterval(memTimer);
+
+}
+
+// todo
+async function copySlow(fromPath, toFilename) {
   // use
   // fs.readFile
   // fs.writeFile
 }
 
-async function copyFast(from, toFilename) {
+// todo
+async function copyFast(fromPath, toFilename) {
   // use streams
 }
 
