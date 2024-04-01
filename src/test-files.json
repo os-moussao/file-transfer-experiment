@@ -1,0 +1,9 @@
+{
+  "src": "https://testfile.org/",
+  "pdf-10mb": "https://files.testfile.org/PDF/10MB-TESTFILE.ORG.pdf",
+  "pdf-50mb": "https://files.testfile.org/PDF/50MB-TESTFILE.ORG.pdf",
+  "pdf-200mb": "https://files.testfile.org/PDF/200MB-TESTFILE.ORG.pdf",
+  "mp4-580mb": "https://mp4-download.com/8k-5-MP4",
+  "mp4-900mb": "https://mp4-download.com/8k-2-MP4",
+  "mp4-2.77gb": "https://mp4-download.com/8k-3-MP4"
+}

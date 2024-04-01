@@ -1,0 +1,12 @@
+{
+  "name": "file-transfer",
+  "description": "experimenting with large file transfer in node js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "file-type": "^19.0.0"
+  }
+}
