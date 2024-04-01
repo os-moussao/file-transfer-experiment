@@ -2,6 +2,7 @@
   "name": "file-transfer",
   "description": "experimenting with large file transfer in node js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",
