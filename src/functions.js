@@ -13,7 +13,7 @@ export async function copyUsingBuffers(filePath) {
   return newFilePath;
 }
 
-export async function copyUsingStreamOnData(filePath) {
+export async function copyUsingDataListener(filePath) {
   return new Promise((resolve) => {
     const newFilePath = getNewFilePath(filePath, 'copy2');
 
