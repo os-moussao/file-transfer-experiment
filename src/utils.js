@@ -2,10 +2,6 @@ import fs from 'fs';
 import axios from 'axios';
 import { dirname } from './constants.js';
 
-export function rethrow(err) {
-  if (err) throw err;
-}
-
 export function downloadFile({ name, url }) {
   return new Promise(async (resolve, reject) => {
     const filePath = `${dirname}/${name}`;
@@ -21,4 +17,8 @@ export function downloadFile({ name, url }) {
       resolve(filePath);
     });
   });
+}
+
+export function rethrow(err) {
+  if (err) throw err;
 }

@@ -1,28 +1,36 @@
 import fs from 'fs';
-import https from 'https';
-import { memMonitor } from './memory-utils.js';
+import { exec } from 'child_process';
+import { promisify } from 'util';
 import { dirname, files } from './constants.js';
-import { downloadFile, rethrow } from './utils.js';
+import { downloadFile } from './utils.js';
+import {
+  copyNative,
+  copyUsingBuffers,
+  copyUsingPipe,
+  copyUsingStreamOnData,
+} from './functions.js';
 
-main();
+const execAsync = promisify(exec);
 
-// todo:
-// test with copying
-async function main() {
+main({ download: true });
+
+async function main(options = { download: false }) {
   if (!fs.existsSync(dirname)) fs.mkdirSync(dirname);
 
-  const filePath = await downloadFile(files['200mb']);
+  const { download } = options;
+  const filePath = download
+    ? await downloadFile(files['10mb'])
+    : 'tmp/10mb.pdf';
 
-  console.log(`downloaded ${filePath}`);
+  await copyUsingBuffers(filePath);
+  await copyUsingStreamOnData(filePath);
+  await copyUsingPipe(filePath);
+  await copyNative(filePath);
+
+  const { stdout } = await execAsync(`du -h ${dirname}/*`);
+
+  // should list all copied files with approximately same size
+  console.log(stdout);
+
+  // todo: benchmark
 }
-
-// todo
-async function copy(fromPath, toFilename) {}
-
-// todo
-async function copy2(fromPath, toFilename) {
-  // use streams
-}
-
-// todo
-async function copy3() {}
